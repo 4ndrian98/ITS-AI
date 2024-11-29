@@ -1,3 +1,5 @@
 # ITS-AI
 
-Hello World!
+##Informazioni di base
+
+Questo è il mio primo progetto gestito con Git.
