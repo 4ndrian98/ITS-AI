@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="cassa"/>
+        <attribute name="authors" value="ITS"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-11-25 10:43:11 "/>
+        <attribute name="created" value="SVRTO0lUUy1QMDM7MjAyNC0xMS0xOTsiMTI6NTA6MTMgIjsxODkx"/>
+        <attribute name="edited" value="SVRTO0lUUy1QMDM7MjAyNC0xMS0xOTsiMDE6NDU6MDIgIjsxO0lUUztJVFMtUDAzOzIwMjQtMTEtMTk7IjEyOjUwOjEzICI7Mzk0OQ=="/>
+        <attribute name="edited" value="SVRTO0lUUy1QMDM7MjAyNC0xMS0xOTsiMDE6NTk6MTMgIjszOzIwMDg="/>
+        <attribute name="edited" value="VXNlcjtERVNLVE9QLTdGMFFOOEk7MjAyNC0xMS0yNTsiMTA6Mzc6MjggIjsyO1VzZXI7REVTS1RPUC03RjBRTjhJOzIwMjQtMTEtMjQ7IjA0OjQxOjU3ICI7UkVTVE9DQVNTQS5mcHJnOzY3Njc="/>
+        <attribute name="edited" value="VXNlcjtERVNLVE9QLTdGMFFOOEk7MjAyNC0xMS0yNTsiMTA6NDM6MTEgIjszOzI3NTE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="Resto" type="Real" array="False" size=""/>
+            <assign variable="Resto" expression="0"/>
+            <declare name="Prezzo" type="Real" array="False" size=""/>
+            <assign variable="Prezzo" expression="0"/>
+            <declare name="Scontrino" type="Real" array="False" size=""/>
+            <assign variable="Scontrino" expression="0"/>
+            <declare name="Contanti" type="Real" array="False" size=""/>
+            <assign variable="Contanti" expression="0"/>
+            <declare name="Prodotti" type="Boolean" array="False" size=""/>
+            <output expression="&quot;Buongiorno! desidera acquistare qualcosa? risponda True (SI) o False(NO):&quot;" newline="True"/>
+            <input variable="Prodotti"/>
+            <if expression="Prodotti">
+                <then>
+                    <while expression="Prodotti">
+                        <output expression="&quot;Scrivi il prezzo del prodotto: &quot;" newline="True"/>
+                        <input variable="Prezzo"/>
+                        <assign variable="Scontrino" expression="Scontrino + Prezzo"/>
+                        <output expression="&quot;Desidera altro? rispondi True (SI) o False (NO): &quot;" newline="True"/>
+                        <input variable="Prodotti"/>
+                    </while>
+                    <declare name="TipoPagamento" type="Boolean" array="False" size=""/>
+                    <output expression="&quot;Il tuo saldo: &quot; &amp; Scontrino &amp; &quot; &#8364;&quot;" newline="True"/>
+                    <output expression="&quot;Come preferisci pagare: True(bancomat) oppure False(contanti)?&quot;" newline="True"/>
+                    <input variable="TipoPagamento"/>
+                    <if expression="TipoPagamento">
+                        <then>
+                            <output expression="&quot;Pagamento andato a buon fine! Grazie, Arrivederci!&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Scrivi quanti contanti hai?&quot;" newline="True"/>
+                            <input variable="Contanti"/>
+                            <if expression="Contanti &gt;= Scontrino">
+                                <then>
+                                    <assign variable="Resto" expression="Contanti - Scontrino"/>
+                                    <if expression="Resto == 0">
+                                        <then>
+                                            <output expression="&quot;I soldi sono giusti! Grazie e Arrivederci!&quot;" newline="False"/>
+                                        </then>
+                                        <else>
+                                            <declare name="cinquecento, duecento, cento, cinquanta, venti, dieci, cinque, due, uno, cinquantaCent, ventiCent, dieciCent, cinqueCent, unCent" type="Real" array="False" size=""/>
+                                            <output expression="&quot;Ecco il tuo resto: &quot; &amp; Resto &amp; &quot; &#8364;&quot; &amp; &quot; Sar&#224; erogato cos&#236; : &quot;" newline="True"/>
+                                            <assign variable="cinquecento" expression="0"/>
+                                            <assign variable="duecento" expression="0"/>
+                                            <assign variable="cento" expression="0"/>
+                                            <assign variable="cinquanta" expression="0"/>
+                                            <assign variable="venti" expression="0"/>
+                                            <assign variable="dieci" expression="0"/>
+                                            <assign variable="cinque" expression="0"/>
+                                            <assign variable="due" expression="0"/>
+                                            <assign variable="uno" expression="0"/>
+                                            <assign variable="cinquantaCent" expression="0"/>
+                                            <assign variable="ventiCent" expression="0"/>
+                                            <assign variable="dieciCent" expression="0"/>
+                                            <assign variable="cinqueCent" expression="0"/>
+                                            <assign variable="unCent" expression="0"/>
+                                            <while expression="Resto &gt;= 500">
+                                                <assign variable="Resto" expression="Resto-500"/>
+                                                <assign variable="cinquecento" expression="cinquecento + 1"/>
+                                            </while>
+                                            <if expression="cinquecento &gt; 0">
+                                                <then>
+                                                    <output expression="cinquecento &amp; &quot; Banconote da Cinquecento (500&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 200">
+                                                <assign variable="Resto" expression="Resto-200"/>
+                                                <assign variable="duecento" expression="duecento + 1"/>
+                                            </while>
+                                            <if expression="duecento &gt; 0">
+                                                <then>
+                                                    <output expression="duecento &amp; &quot; Banconota/e da Duecento (200&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 100">
+                                                <assign variable="Resto" expression="Resto-100"/>
+                                                <assign variable="cento" expression="cento + 1"/>
+                                            </while>
+                                            <if expression="cento &gt; 0">
+                                                <then>
+                                                    <output expression="cento &amp; &quot; Banconota/e da Cento (100&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 50">
+                                                <assign variable="Resto" expression="Resto-50"/>
+                                                <assign variable="cinquanta" expression="cinquanta + 1"/>
+                                            </while>
+                                            <if expression="cinquanta &gt; 0">
+                                                <then>
+                                                    <output expression="cinquanta &amp; &quot; Banconota/e da Cinquanta (50&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 20">
+                                                <assign variable="Resto" expression="Resto-20"/>
+                                                <assign variable="venti" expression="venti + 1"/>
+                                            </while>
+                                            <if expression="venti &gt; 0">
+                                                <then>
+                                                    <output expression="venti &amp; &quot; Banconota/e da Venti (20&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 10">
+                                                <assign variable="Resto" expression="Resto-10"/>
+                                                <assign variable="dieci" expression="dieci + 1"/>
+                                            </while>
+                                            <if expression="dieci &gt; 0">
+                                                <then>
+                                                    <output expression="dieci &amp; &quot; Banconota/e da Dieci (10&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 5">
+                                                <assign variable="Resto" expression="Resto-5"/>
+                                                <assign variable="cinque" expression="cinque + 1"/>
+                                            </while>
+                                            <if expression="cinque &gt; 0">
+                                                <then>
+                                                    <output expression="cinque &amp; &quot; Banconota/e da Cinque(5&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 2">
+                                                <assign variable="Resto" expression="Resto-2"/>
+                                                <assign variable="due" expression="due + 1"/>
+                                            </while>
+                                            <if expression="due &gt; 0">
+                                                <then>
+                                                    <output expression="due &amp; &quot; Moneta/e da Due(2&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 1">
+                                                <assign variable="Resto" expression="Resto-1"/>
+                                                <assign variable="uno" expression="uno + 1"/>
+                                            </while>
+                                            <if expression="uno &gt; 0">
+                                                <then>
+                                                    <output expression="uno &amp; &quot; Moneta/e da Uno(1&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 0.50">
+                                                <assign variable="Resto" expression="Resto-0.5"/>
+                                                <assign variable="cinquantaCent" expression="cinquantaCent + 1"/>
+                                            </while>
+                                            <if expression="cinquantaCent &gt; 0">
+                                                <then>
+                                                    <output expression="cinquantaCent &amp; &quot; Moneta/e da Cinquanta Centesimi(0,50&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 0.20">
+                                                <assign variable="Resto" expression="Resto-0.20"/>
+                                                <assign variable="ventiCent" expression="ventiCent + 1"/>
+                                            </while>
+                                            <if expression="ventiCent &gt; 0">
+                                                <then>
+                                                    <output expression="ventiCent &amp; &quot; Moneta/e da Venti Centesimi(0,20&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 0.1">
+                                                <assign variable="Resto" expression="Resto-0.1"/>
+                                                <assign variable="dieciCent" expression="dieciCent + 1"/>
+                                            </while>
+                                            <if expression="dieciCent &gt; 0">
+                                                <then>
+                                                    <output expression="dieciCent &amp; &quot; Moneta/e da Dieci Centesimi(0,10&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 0.05">
+                                                <assign variable="Resto" expression="Resto-0.05"/>
+                                                <assign variable="cinqueCent" expression="cinqueCent + 1"/>
+                                            </while>
+                                            <if expression="cinqueCent &gt; 0">
+                                                <then>
+                                                    <output expression="cinqueCent &amp; &quot; Moneta/e da Cinque Centesimi(0,05&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <while expression="Resto &gt;= 0.01">
+                                                <assign variable="Resto" expression="Resto-0.01"/>
+                                                <assign variable="unCent" expression="unCent + 1"/>
+                                            </while>
+                                            <if expression="unCent &gt; 0">
+                                                <then>
+                                                    <output expression="unCent &amp; &quot; Moneta/e da Un Centesimo(0,01&#8364;)&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <output expression="&quot; Grazie e Arrivederci!&quot;" newline="True"/>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else>
+                                    <assign variable="Resto" expression="Scontrino - Contanti"/>
+                                    <output expression="&quot;I soldi non bastano, ti mancano: &quot; &amp; Resto &amp; &quot; &#8364;&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;Grazie e Arrivederci!&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="ErogazioneResto" type="None" variable="">
+        <parameters/>
+        <body/>
+    </function>
+</flowgorithm>

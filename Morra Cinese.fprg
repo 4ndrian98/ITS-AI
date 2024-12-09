@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Morra Cinese"/>
+        <attribute name="authors" value="User"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-11-24 09:36:49 "/>
+        <attribute name="created" value="VXNlcjtERVNLVE9QLTdGMFFOOEk7MjAyNC0xMS0yNDsiMDc6MjY6MjMgIjsyNjUw"/>
+        <attribute name="edited" value="VXNlcjtERVNLVE9QLTdGMFFOOEk7MjAyNC0xMS0yNDsiMDk6MzY6NDkgIjsxOzI3Njk="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="computer, PunteggioPlayer, PunteggioComputer, i, player" type="Integer" array="False" size=""/>
+            <assign variable="PunteggioComputer" expression="0"/>
+            <assign variable="PunteggioPlayer" expression="0"/>
+            <output expression="&quot;Morra Cinese: Gioca 5 contro il computer. &quot; &amp; &#13;&#10;&quot;Chi fa pi&#249; punti vince!&quot;" newline="False"/>
+            <for variable="i" start="0" end="5" direction="inc" step="1">
+                <assign variable="computer" expression="random(3)MOD 3+1"/>
+                <output expression="&quot; Scegli Carta(1), Forbici&#9986;(2), Sasso(3) : &quot;" newline="True"/>
+                <input variable="player"/>
+                <while expression="player &lt; 1 or player &gt; 3">
+                    <output expression="&quot;Valore non accettato, puoi scegliere solo Carta(1), Forbici&#9986;(2), Sasso(3) :&quot;" newline="True"/>
+                    <input variable="player"/>
+                </while>
+                <output expression="&quot;Sasso, Carta, Forbice!: &quot;" newline="True"/>
+                <if expression="player = 1">
+                    <then>
+                        <if expression="computer = 1">
+                            <then>
+                                <output expression="&quot;Il computer ha scelto: Carta Risultato: Pareggio!&quot;" newline="True"/>
+                            </then>
+                            <else/>
+                        </if>
+                        <if expression="computer = 2">
+                            <then>
+                                <output expression="&quot;Il computer ha scelto: Forbice Risultato: Punto del Computer!&quot;" newline="True"/>
+                                <assign variable="PunteggioComputer" expression="PunteggioComputer + 1"/>
+                            </then>
+                            <else/>
+                        </if>
+                        <if expression="computer = 3">
+                            <then>
+                                <output expression="&quot;Il computer ha scelto: Sasso Risultato: Punto tuo!&quot;" newline="True"/>
+                                <assign variable="PunteggioPlayer" expression="PunteggioPlayer +1"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </then>
+                    <else>
+                        <if expression="player = 2">
+                            <then>
+                                <if expression="computer = 1">
+                                    <then>
+                                        <output expression="&quot;Il computer ha scelto: Carta Risultato: Punto tuo!&quot;" newline="True"/>
+                                        <assign variable="PunteggioPlayer" expression="PunteggioPlayer +1"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                                <if expression="computer = 2">
+                                    <then>
+                                        <output expression="&quot;Il computer ha scelto: Forbice Risultato: Pareggio!&quot;" newline="True"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                                <if expression="computer = 3">
+                                    <then>
+                                        <output expression="&quot;Il computer ha scelto: Sasso Risultato: Punto del Computer!&quot;" newline="True"/>
+                                        <assign variable="PunteggioComputer" expression="PunteggioComputer + 1"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </then>
+                            <else>
+                                <if expression="player = 3">
+                                    <then>
+                                        <if expression="computer = 1">
+                                            <then>
+                                                <output expression="&quot;Il computer ha scelto: Carta Risultato: Punto del Computer!&quot;" newline="True"/>
+                                                <assign variable="PunteggioComputer" expression="PunteggioComputer + 1"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                        <if expression="computer = 2">
+                                            <then>
+                                                <output expression="&quot;Il computer ha scelto: Forbice Risultato: Punto tuo!&quot;" newline="True"/>
+                                                <assign variable="PunteggioPlayer" expression="PunteggioPlayer +1"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                        <if expression="computer = 3">
+                                            <then>
+                                                <output expression="&quot;Il computer ha scelto: Sasso Risultato: Pareggio!&quot;" newline="True"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </for>
+            <if expression="PunteggioComputer &gt;= PunteggioPlayer">
+                <then>
+                    <if expression="PunteggioComputer == PunteggioPlayer">
+                        <then>
+                            <output expression="&quot;Fine dei giochi! Risultato Pari!&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Fine dei giochi! Ha vinto il Computer! con un punteggio di &quot; &amp; PunteggioComputer &amp; &quot;/5&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;Fine dei giochi! Hai vinto tu! con un punteggio di &quot; &amp; PunteggioPlayer &amp; &quot;/5&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="introduzione" type="None" variable="">
+        <parameters/>
+        <body/>
+    </function>
+</flowgorithm>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="cerchio"/>
+        <attribute name="authors" value="ITS"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-12-06 01:37:44 "/>
+        <attribute name="created" value="SVRTO0lUUy1QMDM7MjAyNC0xMi0wNjsiMDE6MjA6MDAgIjsxODc5"/>
+        <attribute name="edited" value="SVRTO0lUUy1QMDM7MjAyNC0xMi0wNjsiMDE6Mzc6NDQgIjsxOzIwMDM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="1" end="360" direction="inc" step="1">
+                <forward expression="10" pen="down"/>
+                <turn expression="1" rotate="right"/>
+                <forward expression="10" pen="up"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>

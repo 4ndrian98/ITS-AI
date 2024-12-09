@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="figura in base ai lati"/>
+        <attribute name="authors" value="ITS"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-12-06 01:55:32 "/>
+        <attribute name="created" value="SVRTO0lUUy1QMDM7MjAyNC0xMi0wNjsiMDE6NDA6NDkgIjsxODk0"/>
+        <attribute name="edited" value="SVRTO0lUUy1QMDM7MjAyNC0xMi0wNjsiMDE6NTU6MzIgIjsxOzIwMDA="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="lati, i" type="Integer" array="False" size=""/>
+            <output expression="&quot;Quanti lati deve avere la figura?&quot;" newline="True"/>
+            <input variable="lati"/>
+            <for variable="i" start="1" end="lati" direction="inc" step="1">
+                <forward expression="10" pen="down"/>
+                <turn expression="360/lati" rotate="right"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
