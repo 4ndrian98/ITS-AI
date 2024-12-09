@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="MediaNumeri con array"/>
+        <attribute name="authors" value="User"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-12-06 12:18:00 "/>
+        <attribute name="created" value="VXNlcjtERVNLVE9QLTdGMFFOOEk7MjAyNC0xMi0wMTsiMDQ6MDQ6MjkgIjsyNjQ1"/>
+        <attribute name="edited" value="VXNlcjtERVNLVE9QLTdGMFFOOEk7MjAyNC0xMi0wMTsiMDQ6MTk6NDkgIjs5O0lUUztJVFMtUDAzOzIwMjQtMTEtMjk7IjAxOjE3OjI0ICI7TWVkaWFOdW1lcmkuZnByZzs2MzYz"/>
+        <attribute name="edited" value="VXNlcjtERVNLVE9QLTdGMFFOOEk7MjAyNC0xMi0wNDsiMDY6MTk6MTUgIjs0OzI3NjI="/>
+        <attribute name="edited" value="SVRTO0lUUy1QMDM7MjAyNC0xMi0wNjsiMTI6MTg6MDAgIjszOzE5OTg="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="Num" type="Real" array="True" size="100"/>
+            <declare name="Contattore, SommaNumeri, Media, NumMax, NumMin, i" type="Real" array="False" size=""/>
+            <assign variable="Contattore" expression="0"/>
+            <assign variable="SommaNumeri" expression="0"/>
+            <assign variable="Media" expression="0"/>
+            <declare name="x" type="Boolean" array="False" size=""/>
+            <assign variable="x" expression="True"/>
+            <output expression="&quot;Calcolo Media Numeri. Hai numeri da inserire? True(SI) o False(NO): &quot;" newline="True"/>
+            <input variable="x"/>
+            <if expression="x">
+                <then>
+                    <while expression="x">
+                        <output expression="&quot;Scrivi Numero: &quot;" newline="True"/>
+                        <input variable="Num[Contattore]"/>
+                        <assign variable="SommaNumeri" expression="SommaNumeri + Num[Contattore]"/>
+                        <output expression="&quot;Vuoi continuare a inserire un altro numero? True(SI) o False(NO): &quot;" newline="True"/>
+                        <input variable="x"/>
+                        <if expression="Contattore = 0">
+                            <then>
+                                <assign variable="NumMax" expression="Num[Contattore]"/>
+                                <assign variable="NumMin" expression="Num[Contattore]"/>
+                            </then>
+                            <else>
+                                <if expression="Num[Contattore] &gt; NumMax">
+                                    <then>
+                                        <assign variable="NumMax" expression="Num[Contattore]"/>
+                                    </then>
+                                    <else>
+                                        <if expression="Num[Contattore] &lt; NumMin">
+                                            <then>
+                                                <assign variable="NumMin" expression="Num[Contattore]"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                    </else>
+                                </if>
+                            </else>
+                        </if>
+                        <if expression="x">
+                            <then>
+                                <assign variable="Contattore" expression="Contattore + 1"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </while>
+                    <assign variable="Media" expression="SommaNumeri / (Contattore+1)"/>
+                    <output expression="&quot;Hai inserito &quot; &amp; (Contattore+1) &amp; &quot; numeri: &quot;" newline="True"/>
+                    <for variable="i" start="0" end="contattore" direction="inc" step="1">
+                        <output expression="Num[i]" newline="True"/>
+                    </for>
+                    <output expression="&quot;Ecco la tua media: &quot; &amp; Media" newline="True"/>
+                    <output expression="&quot;Ecco il tuo numero minimo: &quot; &amp; NumMin" newline="True"/>
+                    <output expression="&quot;Ecco il tuo numero massimo: &quot; &amp; NumMax" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Nessun numero inserito! Fine&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
