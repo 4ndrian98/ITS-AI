@@ -8,4 +8,4 @@ for x in range(tempo, 0, -1):
     time.sleep(1)
     print(f"{ore:02}:{minuti:02}:{secondi:02}")
 
-print("Tempo Finito!!")
+print("Tempo Finito!!!")
