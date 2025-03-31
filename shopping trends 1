@@ -1,0 +1,96 @@
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load data (ensure no placeholder rows)
+df = pd.read_csv('shopping_trends.csv')
+
+# Clean data: drop empty rows and handle missing values
+df = df.dropna(how='all').reset_index(drop=True)
+#print("Missing values before cleaning:")
+#print(df.isnull().sum())
+df = df.dropna().reset_index(drop=True)
+#print("\nMissing values after cleaning:")
+#print(df.isnull().sum())
+
+# Remove Customer ID (not a feature)
+df = df.drop(columns=['Customer ID'])
+
+# Define columns to encode
+columns_to_onehot = [
+    'Item Purchased', 'Category', 'Location', 'Color', 
+    'Payment Method', 'Shipping Type'
+]
+
+columns_to_ordinal = [
+    'Gender', 'Size', 'Season', 
+    'Subscription Status', 'Promo Code Used', 
+    'Discount Applied', 'Frequency of Purchases'
+]
+
+numeric_features = [
+    'Age', 'Purchase Amount (USD)', 'Review Rating', 'Previous Purchases'
+]
+
+# Create transformers (sparse_output=False for dense output)
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False), columns_to_onehot),
+        ('ordinal', OrdinalEncoder(), columns_to_ordinal),
+    ],
+    remainder='passthrough'  # Keep numeric features
+)
+
+# Apply transformations (convert to dense if needed)
+X_processed = preprocessor.fit_transform(df)
+if hasattr(X_processed, 'toarray'):
+    X_processed = X_processed.toarray()
+
+# Standardize all features (critical for PCA)
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X_processed)
+
+# Apply PCA with 2 components
+pca = PCA(n_components=2)
+principal_components = pca.fit_transform(X_scaled)
+
+# Print variance explained
+print("\nExplained Variance Ratio:")
+print(pca.explained_variance_ratio_)
+
+# Visualization
+pca_df = pd.DataFrame(principal_components, columns=['PC1', 'PC2'])
+plt.figure(figsize=(12, 8))
+sns.scatterplot(x='PC1', y='PC2', data=pca_df, alpha=0.6)
+plt.title('PCA Component Projection\n(All Features Included)')
+plt.xlabel(f'PC1 ({pca.explained_variance_ratio_[0]:.1%})')
+plt.ylabel(f'PC2 ({pca.explained_variance_ratio_[1]:.1%})')
+plt.grid(True)
+plt.show()
+# Ottieni i loading scores, sorted by decreasing absolute value of the first component
+# Ottieni i loading scores
+# Ottieni i nomi delle variabili dopo la codifica
+feature_names = preprocessor.get_feature_names_out()
+
+# Ottieni i loading scores (pesi delle componenti)
+loadings = pd.DataFrame(
+    data=pca.components_.T,  # Trasponi per avere variabili per riga
+    columns=['PC1', 'PC2'],
+    index=feature_names
+)
+
+# Calcola l'importanza assoluta per ogni componente
+loadings_sorted_pc1 = loadings.assign(abs_PC1=abs(loadings['PC1'])).sort_values(by='abs_PC1', ascending=False)
+loadings_sorted_pc2 = loadings.assign(abs_PC2=abs(loadings['PC2'])).sort_values(by='abs_PC2', ascending=False)
+
+# Mostra le prime 10 variabili più influenti per PC1 e PC2
+print("Top 10 variabili per PC1 (per importanza assoluta):\n")
+print(loadings_sorted_pc1[['PC1']].head(10))
+
+print("\nTop 10 variabili per PC2 (per importanza assoluta):\n")
+print(loadings_sorted_pc2[['PC2']].head(10))
+plt.plot(np.cumsum(pca.explained_variance_ratio_))
